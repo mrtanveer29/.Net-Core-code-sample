@@ -1,0 +1,104 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+      "DataAccess/1.0.0": {
+        "dependencies": {
+          "Lucene.Net": "4.8.0-beta00008",
+          "Npgsql.EntityFrameworkCore.PostgreSQL": "2.1.1"
+        },
+        "runtime": {
+          "DataAccess.dll": {}
+        }
+      },
+      "J2N/2.0.0-beta-0007": {
+        "runtime": {
+          "lib/netstandard2.0/J2N.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        }
+      },
+      "Lucene.Net/4.8.0-beta00008": {
+        "dependencies": {
+          "J2N": "2.0.0-beta-0007"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Lucene.Net.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.8.0.0"
+          }
+        }
+      },
+      "Npgsql/4.0.1": {
+        "dependencies": {
+          "System.ValueTuple": "4.5.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Npgsql.dll": {
+            "assemblyVersion": "4.0.1.0",
+            "fileVersion": "4.0.1.0"
+          }
+        }
+      },
+      "Npgsql.EntityFrameworkCore.PostgreSQL/2.1.1": {
+        "dependencies": {
+          "Npgsql": "4.0.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
+            "assemblyVersion": "2.1.1.0",
+            "fileVersion": "2.1.1.0"
+          }
+        }
+      },
+      "System.ValueTuple/4.5.0": {}
+    }
+  },
+  "libraries": {
+    "DataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "J2N/2.0.0-beta-0007": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-PlYlA3YbIvksKW2lGllaX/pXhIssd9YWViOaTIZOCJb8Gn0u9YuKhnoP8lS6ctnd+ms7bneNvy8X4FBkw8F1Fg==",
+      "path": "j2n/2.0.0-beta-0007",
+      "hashPath": "j2n.2.0.0-beta-0007.nupkg.sha512"
+    },
+    "Lucene.Net/4.8.0-beta00008": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yx7VrDxBun0rD+OYA7kzOxQLodEZQRHO5puBJJf20PI466Um9fxIJ5dvOEMX6b2TwrbfqUO9g9YmQACwmsMNew==",
+      "path": "lucene.net/4.8.0-beta00008",
+      "hashPath": "lucene.net.4.8.0-beta00008.nupkg.sha512"
+    },
+    "Npgsql/4.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-stZuAI50q6fTdGSL+sULvyJYwReFanYuIwARIDHZsjgYOz0e1DaYeqYudOB9e+UDstpoJbhBdbfZ705cCRvxAA==",
+      "path": "npgsql/4.0.1",
+      "hashPath": "npgsql.4.0.1.nupkg.sha512"
+    },
+    "Npgsql.EntityFrameworkCore.PostgreSQL/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2STWVXSP+r5i7222202+a4jMjGNSO55eRFb8MYwO/B1UUduQX25HHcw/sfH5TIPIxRVHCb1RCee491R7chtCWg==",
+      "path": "npgsql.entityframeworkcore.postgresql/2.1.1",
+      "hashPath": "npgsql.entityframeworkcore.postgresql.2.1.1.nupkg.sha512"
+    },
+    "System.ValueTuple/4.5.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-okurQJO6NRE/apDIP23ajJ0hpiNmJ+f0BwOlB/cSqTLQlw5upkf+5+96+iG2Jw40G1fCVCyPz/FhIABUjMR+RQ==",
+      "path": "system.valuetuple/4.5.0",
+      "hashPath": "system.valuetuple.4.5.0.nupkg.sha512"
+    }
+  }
+}

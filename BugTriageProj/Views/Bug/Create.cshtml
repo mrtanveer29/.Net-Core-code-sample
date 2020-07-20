@@ -1,0 +1,166 @@
+﻿@model BugTriage.ViewModels.BugViewModel
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <h4>New Bug Prof Create Page</h4>
+  
+    <div class="row">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <form asp-action="Create" method="post">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Id" class="control-label"></label>
+                    <input asp-for="Id" class="form-control" />
+                    <span asp-validation-for="Id" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Products" class="control-label"></label>
+                    <input asp-for="Products" class="form-control" />
+                    <span asp-validation-for="Products" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Component" class="control-label"></label>
+                    <input asp-for="Component" class="form-control" />
+                    <span asp-validation-for="Component" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Hardware" class="control-label"></label>
+                    <input asp-for="Hardware" class="form-control" />
+                    <span asp-validation-for="Hardware" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Assignee" class="control-label"></label>
+                    <input asp-for="Assignee" class="form-control" />
+                    <span asp-validation-for="Assignee" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Saverity" class="control-label"></label>
+                    <select asp-for="Saverity" class="form-control">
+                        <option value="1">Blocker</option>
+                        <option value="2">Critical</option>
+                        <option value="3">Major</option>
+                        <option value="4">Normal</option>
+                        <option value="5">Minor</option>
+                        <option value="6">Trivial</option>
+                        <option value="7">Enhancement</option>
+                        <option value="8">S1</option>
+                        <option value="9">S2</option>
+                        <option value="10">S3</option>
+                        <option value="11">S4</option>
+                    </select>
+                    <span asp-validation-for="Saverity" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Priority" class="control-label"></label>
+                    <select asp-for="Priority" class="form-control" >
+                        <option value="1">P1</option>
+                        <option value="2">P2</option>
+                        <option value="3">P3</option>
+                        <option value="4">P4</option>
+                        <option value="5">P5</option>
+
+                    </select>
+                    <span asp-validation-for="Priority" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Summery" class="control-label"></label>
+                    <textarea asp-for="Summery" class="form-control"></textarea>
+                    <span asp-validation-for="Summery" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+            </div>
+        </form>
+    </div>
+    <div class="card">
+
+        <div class="card-body">
+            <p class="bg-red">Alternatively you can upload excel file</p>
+            <form method="post" enctype="multipart/form-data">
+                <div class="row">
+                    <div class="col-md-2">
+                        <select id="bugSource" class="form-control">
+                            <option value="Mozila">Mozila</option>
+                            <option value="Eclipse">Eclipse</option>
+                            <option value="NetBeans">NetBeans</option>
+                            <option value="All">All</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="file" id="fileUpload" name=" fileUpload" accept=".xlsx, .xls" class="form-control" />
+                    </div>
+                    <div class="col-md-2">
+                        <input type="text" id="securityCode" placeholder="Security Code" class="form-control" />
+                    </div>
+                    <div class="col-md-2">
+                        <input class="btn btn-default" type="button" id="btnUpload" value="Upload File" />
+                    </div>
+                </div>
+
+            </form>
+            <div id="divData"></div>
+        </div>
+    </div>
+
+
+
+</body>
+</html>
+
+@section scripts{
+    <script src="~/js/ReadExcelFromUpload.js"></script>
+
+    <script>
+        $('#btnUpload').on('click', function () {
+           
+            var securityCode = $("#securityCode").val();
+            if (securityCode !== code) {
+                alert("Security Code is Not Matched");
+                return;
+            }
+            var bugSource = $("#bugSource").val();
+            var file = $("#fileUpload");
+            onLoadExcel(file, { bugSource }, function (filedata) {
+                $('#divData').html("..Please Wait");
+                remote({
+                    type: "POST",
+                    url: "/" + 'BUG' + "/" + 'FileUpload',
+                    data: filedata,
+                    success: function (response) {
+                        if (response.length == 0)
+                            alert('Error occurred while uploading the excel file');
+                        else {
+                            $('#divData').html(response);
+                        }
+                    },
+                    error: function (e) {
+                        $('#divData').html(e.responseText);
+                    }
+                });
+              
+            });
+            Loading(false)
+        });
+    </script>
+}

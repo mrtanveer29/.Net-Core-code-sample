@@ -1,0 +1,176 @@
+﻿@model BugTriage.ViewModels.DeveloperViewModel
+
+@{
+    ViewData["Title"] = "Developer Profile Create";
+}
+<style>
+    .bootstrap-tagsinput {
+        width: 100% !important;
+    }
+</style>
+<h2>Create Developer Profile</h2>
+
+
+<hr />
+<div class="">
+    <form asp-action="Create" id="frmCreateDeveloper">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="entry_options" id="single" value="single" checked>
+                    <label class="form-check-label" for="single">
+                        Single Entry
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="entry_options" id="multiple" value="multiple">
+                    <label class="form-check-label" for="multiple">
+                        Multiple Entry
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label asp-for="DeveloperName" class="control-label"></label>&#42;
+                    <input asp-for="DeveloperName" class="form-control" />
+                    <span asp-validation-for="DeveloperName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="DeveloperType" class="control-label"></label>&#42;
+                    <select asp-for="DeveloperType" class="form-control" asp-items="@(new SelectList(ViewBag.developerTypes,"DeveloperTypeId","DeveloperTypeName"))">
+                        <option value="">Pick one</option>
+                    </select>
+                    <span asp-validation-for="DeveloperType" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Products" class="control-label"></label>
+                    <input asp-for="Products" class="form-control" data-role="tagsinput" />
+                    <span asp-validation-for="Products" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Components" class="control-label"></label>
+                    <input asp-for="Components" class="form-control" data-role="tagsinput" />
+                    <span asp-validation-for="Components" class="text-danger"></span>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+
+                <div class="form-group">
+                    <label asp-for="Platforms" class="control-label"></label>
+                    <input asp-for="Platforms" class="form-control" data-role="tagsinput" />
+                    <span asp-validation-for="Platforms" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PreviousWorks" class="control-label"></label>
+                    <input asp-for="PreviousWorks" class="form-control" data-role="tagsinput" />
+                    <span asp-validation-for="PreviousWorks" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Skills" class="control-label"></label>
+                    <input asp-for="Skills" class="form-control" data-role="tagsinput" />
+                    <span asp-validation-for="Skills" class="text-danger"></span>
+                </div>
+
+
+            </div>
+
+        </div>
+        <div class="form-group">
+            <input id="btnSave" type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </form>
+</div>
+<div class="card">
+
+    <div class="card-body">
+        <p class="bg-red">Alternatively you can upload excel file</p>
+        <form method="post" enctype="multipart/form-data">
+            <div class="row">
+               
+                <div class="col-md-2">
+                    <select id="uploadDeveloperType" class="form-control" asp-items="@(new SelectList(ViewBag.developerTypes,"DeveloperTypeId","DeveloperTypeName"))">
+                        <option value="">Pick one</option>
+                    </select>
+                </div>  
+                <div class="col-md-4">
+                    <input type="file" id="fileUpload" accept=".xlsx, .xls" name=" fileUpload" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                    <input type="text" id="securityCode" placeholder="Security Code" class="form-control" />
+                </div>
+                <div class="col-md-4">
+                    <input class="btn btn-default" type="button" id="btnUpload" value="Upload File" />
+                </div>
+            </div>
+
+        </form>
+        <div id="divData"></div>
+    </div>
+</div>
+
+<div>
+
+</div>
+
+@section scripts{
+    <script src="~/js/ReadExcelFromUpload.js"></script>
+    <script src="~/js/functions.js"></script>
+    <script>
+
+        $(function () {
+
+            var whitelists = @Json.Serialize(ViewBag.skills);
+            var tagify =$("#Skills").tagify({
+                whitelist: whitelists.value,
+            });
+
+            $("input[type=radio][name=entry_options]").on('change', function (e) {
+                var developerType = $(this).val();
+                toggleEnableState(developerType);
+            })
+            $('#btnUpload').on('click', function () {
+
+               
+                var file = $("#fileUpload");
+                var securityCode = $("#securityCode").val();
+                var DeveloperType = $("#uploadDeveloperType").val();
+                if (DeveloperType.length == 0) {
+                    alert("Select A Type");
+                    return;
+                }
+                if (securityCode !== code) {
+                    alert("Security Code Not Matched");
+                    return;
+                }
+                onLoadExcel(file, { DeveloperType }, function (filedata) {
+                    $('#divData').html("..Please Wait");
+                    remote({
+                        type: "POST",
+                        url: "/" + 'Developer' + "/" + 'ImportFromExcel',
+                        data: filedata,
+                        success: function (response) {
+                            if (response.length == 0)
+                                alert('Error occurred while uploading the excel file');
+                            else {
+                                $('#divData').html(response);
+                            }
+                        },
+                        error: function (e) {
+                            $('#divData').html(e.responseText);
+                        }
+                    });
+
+                });
+           
+            });
+        });
+
+
+    </script>
+}

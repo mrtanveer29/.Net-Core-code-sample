@@ -1,0 +1,325 @@
+﻿
+@{
+    ViewData["Title"] = "Search";
+}
+
+<h2>Search</h2>
+<div class="card">
+
+    <div class="card-body">
+        <p class="bg-red">upload excel file</p>
+        <form method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-md-2">
+                    <select id="bugSource" class="form-control">
+                        <option value="Mozila">Mozila</option>
+                        <option value="Eclipse">Eclipse</option>
+                        <option value="NetBeans">NetBeans</option>
+                        <option value="All">All</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="file" id="fileUpload" name=" fileUpload" accept=".xlsx, .xls" class="form-control" />
+                </div>
+
+                <div class="col-md-2">
+                    <input class="btn btn-default" type="button" id="btnSearchOne" value="Search 1" />
+                    <input class="btn btn-default" type="button" id="btnSearchTwo" value="Search 2" />
+                </div>
+            </div>
+
+        </form>
+        <div id="divData"></div>
+        <div>
+            <h4>Method One Search Result</h4>
+            <table id="resultsetOne">
+                <thead>
+                    <tr>
+                        <th data-col="id">
+                            ID
+                        </th>
+                        <th data-col="productName">
+                            Product
+                        </th>
+                        <th data-col="componentName">
+                            Component
+                        </th>
+                        <th data-col="severityTitle">
+                            Severity
+                        </th>
+                        <th data-col="assigneeName">
+                            Assignee
+                        </th>
+
+                        <th data-col="predictedDevelopers">New Assignee</th>
+                        <th data-col="precision">
+                            Precision
+                        </th>
+                        <th data-col="recall">
+                            Recall
+                        </th>
+                        <th data-col="fscore">
+                            F-Score
+                        </th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </thead>
+
+            </table>
+            <h4>Method One Search Result Summary</h4>
+            <table id="resultsetOneSummary">
+                <thead>
+                    <tr>
+                        <th data-col="serial">
+                            Serial
+                        </th>
+                        <th data-col="TrainningColumn">
+                            Trainning Data Column
+                        </th>
+                        <th data-col="TrainningColumnValue">
+                            Trainning Data
+                        </th>
+                        <th data-col="TestColumn">
+                            Test Data Column
+                        </th>
+                        <th data-col="TestColumnValue">
+                            Test Data
+                        </th>
+
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+
+                    </tr>
+                </thead>
+
+            </table>
+            <h4>Method Two Search Result</h4>
+            <table id="resultsetTwo">
+                <thead>
+                    <tr>
+                        <th data-col="id">
+                            ID
+                        </th>
+                        <th data-col="productName">
+                            Product
+                        </th>
+                        <th data-col="componentName">
+                            Component
+                        </th>
+                        <th data-col="severityTitle">
+                            Severity
+                        </th>
+                        <th data-col="assigneeName">
+                            Assignee
+                        </th>
+                        <th data-col="predictedDevelopers">New Assignee</th>
+                        <th data-col="precision">
+                            Precision
+                        </th>
+                        <th data-col="recall">
+                            Recall
+                        </th>
+                        <th data-col="fscore">
+                            F-Score
+                        </th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+                    </tr>
+                </tbody>
+            </table>
+            <h4>Method Two Search Result Summary</h4>
+            <table id="resultsetTwoSummary">
+                <thead>
+                    <tr>
+                        <th data-col="serial">
+                            Serial
+                        </th>
+                        <th data-col="TrainningColumn">
+                            Trainning Data Column
+                        </th>
+                        <th data-col="TrainningColumnValue">
+                            Trainning Data
+                        </th>
+                        <th data-col="TestColumn">
+                            Test Data Column
+                        </th>
+                        <th data-col="TestColumnValue">
+                            Test Data
+                        </th>
+
+
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+
+
+                    </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</div>
+@section scripts{
+
+    <script src="~/js/ReadExcelFromUpload.js"></script>
+    <script src="~/js/SearchResult.js"></script>
+    <script>
+        var searchResultOne = $("#resultsetOne");
+        var elem = $("#resultsetTwo");
+        var resultsetOneSummary = $("#resultsetOneSummary");
+        var resultsetTwoSummary = $("#resultsetTwoSummary");
+
+        var config = {
+            schema: [
+                {
+                    predictedDevelopers: function (data, type, dataItem) {
+                        //data in this case is predictedDevelopers
+                        // type can be display, filter etc
+                        // dataItem is the current row
+                        var arr = ["", "SED", "NED", "FD"];
+                        var developers = "";
+
+                        data.map(function (item) {
+                            developers += item.developerName + ' (' + (arr[item.developerId]) + "),"
+                        });
+
+                        return developers;
+                    }
+                }
+            ]
+        }
+        var table = elem.createTable(config);
+        var tableOne = searchResultOne.createTable(config);
+        var tableResultsetOneSummary = resultsetOneSummary.createTable();
+        var tableResultsetTwoSummary = resultsetTwoSummary.createTable();
+      
+
+  
+        var summaryOne = [
+            {"serial":1, "TrainningColumn": "No Of dataset SED", "TrainningColumnValue": "0", "TestColumn": "No Of Test Developers","TestColumnValue":"0","col":"sed"},
+            { "serial": 2, "TrainningColumn": "No Of dataset NED", "TrainningColumnValue": "0", "TestColumn": "", "TestColumnValue": "", "col": "ned"},
+            { "serial": 3, "TrainningColumn": "No Of dataset FD", "TrainningColumnValue": "0", "TestColumn": "", "TestColumnValue": "", "col": "fd"},
+            { "serial": 4, "TrainningColumn": "No Of dataset Bug", "TrainningColumnValue": "0", "TestColumn": "No Of New Bug", "TestColumnValue": "0", "col": "bugs"},
+            { "serial": 5, "TrainningColumn": "No Of dataset Product", "TrainningColumnValue": "0", "TestColumn": "No Of New Product", "TestColumnValue": "0", "col": "products"},
+            { "serial": 6, "TrainningColumn": "No Of dataset Component", "TrainningColumnValue": "0", "TestColumn": "No Of New Component", "TestColumnValue": "0", "col": "components"},
+            { "serial": 7, "TrainningColumn": "", "TrainningColumnValue": "0", "TestColumn": "Avarage Precision", "TestColumnValue": "0", "col": "avaragePrecesion"},
+            { "serial": 8, "TrainningColumn": "", "TrainningColumnValue": "0", "TestColumn": "Avarage Recall", "TestColumnValue": "0", "col": "avarageRecall"},
+            { "serial": 9, "TrainningColumn": "", "TrainningColumnValue": "0", "TestColumn": "Avarage F-Score", "TestColumnValue": "0", "col": "avarageFscore"},
+        ]
+
+        remote({
+            type: "POST",
+            url: "/" + 'Developer' + "/" + 'GetCurrentDataCount',
+            success: function (data) {
+                summaryOne.map(item => { item.TrainningColumnValue=data[item.col] ||0});
+            }
+        })
+        $('#btnSearchTwo').on('click', function () {
+
+            var file = $("#fileUpload");
+            onLoadExcel(file, { type: 2 }, function (filedata) {
+                $('#divData').html("..Please Wait");
+                remote({
+                    type: "POST",
+                    url: "/" + 'Developer' + "/" + 'PredictDeveloper',
+                    data: filedata,
+                    success: function (response) {
+                        //console.log(response);
+                        if (response.length == 0)
+                            alert('Error occurred while uploading the excel file');
+                        else {
+                            var bugs = response.bugs;
+                            var summary = response.summary;
+                            table.clear();
+                            table.rows.add(bugs).draw();
+
+                            summaryOne.map(item => { item.TestColumnValue = summary[item.col] || 0 });
+                            tableResultsetTwoSummary.clear();
+                            tableResultsetTwoSummary.rows.add(summaryOne).draw();
+                            
+                            $('#divData').html("");
+                        }
+                    },
+                    error: function (e) {
+                        $('#divData').html(e.responseText);
+                    }
+                });
+
+            });
+        });
+        $('#btnSearchOne').on('click', function () {
+
+            var file = $("#fileUpload");
+            onLoadExcel(file, {type:1}, function (filedata) {
+                $('#divData').html("..Please Wait");
+                remote({
+                    type: "POST",
+                    url: "/" + 'Developer' + "/" + 'PredictDeveloper',
+                    data: filedata,
+                    success: function (response) {
+                       
+                        if (response.length == 0)
+                            alert('Error occurred while uploading the excel file');
+                        else {
+                            var bugs = response.bugs;
+                         
+                            var summary = response.summary;
+                            tableOne.clear();
+                            tableOne.rows.add(bugs).draw();
+                            summaryOne.map(item => { item.TestColumnValue = summary[item.col] || 0});
+                            tableResultsetOneSummary.clear();
+                            tableResultsetOneSummary.rows.add(summaryOne).draw();
+                            $('#divData').html("");
+                        }
+                    },
+                    error: function (e) {
+                        $('#divData').html(e.responseText);
+                    }
+                });
+
+            });
+        });
+
+    </script>
+}
+

@@ -1,0 +1,36 @@
+D:\DOT NET CORE REPO\DataAccess\bin\Release\netcoreapp2.1\DataAccess.deps.json
+D:\DOT NET CORE REPO\DataAccess\bin\Release\netcoreapp2.1\DataAccess.runtimeconfig.json
+D:\DOT NET CORE REPO\DataAccess\bin\Release\netcoreapp2.1\DataAccess.runtimeconfig.dev.json
+D:\DOT NET CORE REPO\DataAccess\bin\Release\netcoreapp2.1\DataAccess.dll
+D:\DOT NET CORE REPO\DataAccess\bin\Release\netcoreapp2.1\DataAccess.pdb
+D:\DOT NET CORE REPO\DataAccess\obj\Release\netcoreapp2.1\DataAccess.csproj.CoreCompileInputs.cache
+D:\DOT NET CORE REPO\DataAccess\obj\Release\netcoreapp2.1\DataAccess.AssemblyInfoInputs.cache
+D:\DOT NET CORE REPO\DataAccess\obj\Release\netcoreapp2.1\DataAccess.AssemblyInfo.cs
+D:\DOT NET CORE REPO\DataAccess\obj\Release\netcoreapp2.1\DataAccess.dll
+D:\DOT NET CORE REPO\DataAccess\obj\Release\netcoreapp2.1\DataAccess.pdb
+D:\DOT NET CORE REPO\DataAccess\obj\Release\netcoreapp2.1\DataAccess.genruntimeconfig.cache
+D:\DOT NET CORE REPO\DataAccess\obj\Release\netcoreapp2.1\DataAccess.csprojAssemblyReference.cache
+E:\JMJ CODE Bitbucket\DataAccess\bin\Release\netcoreapp2.1\DataAccess.deps.json
+E:\JMJ CODE Bitbucket\DataAccess\bin\Release\netcoreapp2.1\DataAccess.runtimeconfig.json
+E:\JMJ CODE Bitbucket\DataAccess\bin\Release\netcoreapp2.1\DataAccess.runtimeconfig.dev.json
+E:\JMJ CODE Bitbucket\DataAccess\bin\Release\netcoreapp2.1\DataAccess.dll
+E:\JMJ CODE Bitbucket\DataAccess\bin\Release\netcoreapp2.1\DataAccess.pdb
+E:\JMJ CODE Bitbucket\DataAccess\obj\Release\netcoreapp2.1\DataAccess.csprojAssemblyReference.cache
+E:\JMJ CODE Bitbucket\DataAccess\obj\Release\netcoreapp2.1\DataAccess.csproj.CoreCompileInputs.cache
+E:\JMJ CODE Bitbucket\DataAccess\obj\Release\netcoreapp2.1\DataAccess.AssemblyInfoInputs.cache
+E:\JMJ CODE Bitbucket\DataAccess\obj\Release\netcoreapp2.1\DataAccess.AssemblyInfo.cs
+E:\JMJ CODE Bitbucket\DataAccess\obj\Release\netcoreapp2.1\DataAccess.dll
+E:\JMJ CODE Bitbucket\DataAccess\obj\Release\netcoreapp2.1\DataAccess.pdb
+E:\JMJ CODE Bitbucket\DataAccess\obj\Release\netcoreapp2.1\DataAccess.genruntimeconfig.cache
+D:\DOT NET CORE REPO\BugTriage\DataAccess\bin\Release\netcoreapp2.1\DataAccess.deps.json
+D:\DOT NET CORE REPO\BugTriage\DataAccess\bin\Release\netcoreapp2.1\DataAccess.runtimeconfig.json
+D:\DOT NET CORE REPO\BugTriage\DataAccess\bin\Release\netcoreapp2.1\DataAccess.runtimeconfig.dev.json
+D:\DOT NET CORE REPO\BugTriage\DataAccess\bin\Release\netcoreapp2.1\DataAccess.dll
+D:\DOT NET CORE REPO\BugTriage\DataAccess\bin\Release\netcoreapp2.1\DataAccess.pdb
+D:\DOT NET CORE REPO\BugTriage\DataAccess\obj\Release\netcoreapp2.1\DataAccess.csprojAssemblyReference.cache
+D:\DOT NET CORE REPO\BugTriage\DataAccess\obj\Release\netcoreapp2.1\DataAccess.csproj.CoreCompileInputs.cache
+D:\DOT NET CORE REPO\BugTriage\DataAccess\obj\Release\netcoreapp2.1\DataAccess.AssemblyInfoInputs.cache
+D:\DOT NET CORE REPO\BugTriage\DataAccess\obj\Release\netcoreapp2.1\DataAccess.AssemblyInfo.cs
+D:\DOT NET CORE REPO\BugTriage\DataAccess\obj\Release\netcoreapp2.1\DataAccess.dll
+D:\DOT NET CORE REPO\BugTriage\DataAccess\obj\Release\netcoreapp2.1\DataAccess.pdb
+D:\DOT NET CORE REPO\BugTriage\DataAccess\obj\Release\netcoreapp2.1\DataAccess.genruntimeconfig.cache

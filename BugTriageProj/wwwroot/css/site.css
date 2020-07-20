@@ -1,0 +1,15 @@
+﻿
+body {
+    border: 1px solid;
+}
+
+.container {
+    border: 1px solid red;
+}
+
+.d-flex {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:space-between
+}

@@ -1,0 +1,407 @@
+﻿@inject SignInManager<IdentityUser> signinManager;
+@inject UserManager<IdentityUser> userManager
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+
+    @*<link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />*@
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/lib/Ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <link href="~/lib/AdminLTE/dist/css/AdminLTE.css" rel="stylesheet" />
+    <link href="~/lib/AdminLTE/dist/css/skins/_all-skins.css" rel="stylesheet" />
+
+    <link href="~/lib/jquery-tagify/tagify.css" rel="stylesheet" />
+    <link href="~/lib/datatables/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="~/lib/loading/loading.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet" />
+    @RenderSection("styles", false)
+
+</head>
+
+@{
+
+    string roleid = "";
+    string username = "";
+    string companyName = "";
+    string comapnyCode = "";
+    string userId = "";
+    string flagPath = "";
+    string company_id = "";
+    string roleName = "";
+    string customerId = "";
+    string branch_id = "";
+
+    //if (Session["user_role_id"] != null)
+    //{
+
+    //    roleid = (string)Session["user_role_id"];
+
+    //}
+    //if (Session["user_name"] != null)
+    //{
+    //    username = (string)Session["user_name"];
+    //}
+    //if (Session["company_name"] != null)
+    //{
+    //    companyName = (string)Session["company_name"];
+    //}
+    //if (Session["company_code"] != null)
+    //{
+    //    comapnyCode = (string)Session["company_code"];
+    //}
+    //if (Session["user_au_id"] != null)
+    //{
+    //    userId = (string)Session["user_au_id"];
+    //}
+    //if (Session["flag_path"] != null)
+    //{
+    //    flagPath = (string)Session["flag_path"];
+    //}
+    //if (Session["company_id"] != null)
+    //{
+    //    company_id = (string)Session["user_au_id"];
+    //    roleName = (string)Session["user_role_name"];
+    //    branch_id = (string)Session["branch_id"];
+    //}
+
+
+}
+<body class="hold-transition skin-blue sidebar-mini">
+
+
+    <div class="wrapper">
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="#" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>B</b>T</span>
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg"><b>BUG</b>Triage</span>
+            </a>
+            <!-- Header Navbar: style can be found in header.less -->
+            <nav class="navbar navbar-static-top">
+                <!-- Sidebar toggle button-->
+                <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <!-- Navbar Right Menu -->
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <!-- Messages: style can be found in dropdown.less-->
+                        @*<li class="dropdown messages-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-envelope-o"></i>
+                                    <span class="label label-success">4</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have 4 messages</li>
+                                    <li>
+                                        <!-- inner menu: contains the actual data -->
+                                        <ul class="menu">
+                                            <li>
+                                                <!-- start message -->
+                                                <a href="#">
+                                                    <div class="pull-left">
+                                                        <img src="/lib/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                                    </div>
+                                                    <h4>
+                                                        Support Team
+                                                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                                                    </h4>
+                                                    <p>Why not buy a new awesome theme?</p>
+                                                </a>
+                                            </li>
+                                            <!-- end message -->
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="#">See All Messages</a></li>
+                                </ul>
+                            </li>*@
+                        <!-- Notifications: style can be found in dropdown.less -->
+                        @*<li class="dropdown notifications-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-bell-o"></i>
+                                    <span class="label label-warning">10</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have 10 notifications</li>
+                                    <li>
+                                         inner menu: contains the actual data
+                                        <ul class="menu">
+                                            <li>
+                                                <a href="#">
+                                                    <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li class="footer"><a href="#">View all</a></li>
+                                </ul>
+                            </li>*@
+                        <!-- Tasks: style can be found in dropdown.less -->
+                        @*<li class="dropdown tasks-menu">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fa fa-flag-o"></i>
+                                    <span class="label label-danger">9</span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header">You have 9 tasks</li>
+                                    <li>
+                                        <!-- inner menu: contains the actual data -->
+                                        <ul class="menu">
+                                            <li>
+                                                <!-- Task item -->
+                                                <a href="#">
+                                                    <h3>
+                                                        Design some buttons
+                                                        <small class="pull-right">20%</small>
+                                                    </h3>
+                                                    <div class="progress xs">
+                                                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
+                                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                                            <span class="sr-only">20% Complete</span>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <!-- end task item -->
+
+                                        </ul>
+                                    </li>
+                                    <li class="footer">
+                                        <a href="#">View all tasks</a>
+                                    </li>
+                                </ul>
+                            </li>*@
+                        <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="/lib/AdminLTE/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                                <span class="hidden-xs">@User.Identity.Name</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <!-- User image -->
+                                <li class="user-header">
+                                    <img src="/lib/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                                    <p>
+                                        @username
+                                        <small>@roleName</small>
+                                    </p>
+                                </li>
+                                <!-- Menu Body -->
+                                <li class="user-body">
+                                    <div class="row">
+                                        <div class="col-xs-4 text-center">
+                                            @if (signinManager.IsSignedIn(User))
+                                            {
+                                                <a asp-controller="Admin" asp-action="ManageUserClaims" asp-route-userId="@userManager.GetUserId(User)">Claims</a>
+                                            }
+                                        </div>
+
+                                    </div>
+                                    <!-- /.row -->
+                                </li>
+                                <!-- Menu Footer-->
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    @if (signinManager.IsSignedIn(User))
+                                    {
+                                        <div class="pull-right">
+                                            <a asp-controller="Account" asp-action="Logout" class="btn btn-default btn-flat">Sign out</a>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="pull-right">
+                                            <a asp-controller="Account" asp-action="Login" class="btn btn-default btn-flat">Login</a>
+                                        </div>
+                                    }
+
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+                        <li>
+                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- Left side column. contains the logo and sidebar -->
+        <aside class="main-sidebar">
+            <!-- sidebar: style can be found in sidebar.less -->
+            <section class="sidebar">
+                <!-- Sidebar user panel -->
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        <img src="/lib/AdminLTE/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <!--User Name-->
+                        <p>@username</p>
+                        <a href="#"><i class="fa fa-circle text-success"></i> @roleName</a>
+                    </div>
+                </div>
+
+                <!-- sidebar menu: : style can be found in sidebar.less this menu will be dynamic -->
+                <ul class="sidebar-menu" data-widget="tree">
+                    <li class="active treeview menu-open">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>Developer</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a asp-controller="Developer" asp-action="Create"><i class="fa fa-circle-o"></i> Developer Create</a></li>
+                            <li class="active"><a asp-controller="Developer" asp-action="FreshDevelopers"><i class="fa fa-circle-o"></i>Fresh Developers</a></li>
+                            <li class="active"><a asp-controller="Developer" asp-action="NewExperiencedDevelopers"><i class="fa fa-circle-o"></i>New Exp. Developers</a></li>
+                            <li class="active"><a asp-controller="Developer" asp-action="SiniorExperiencedDevelopers"><i class="fa fa-circle-o"></i>Sr. Experienced Developers</a></li>
+                        </ul>
+                    </li>
+                    <li class="active treeview menu-open">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>Bug</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a asp-controller="Bug" asp-action="Create"><i class="fa fa-circle-o"></i> Bug Prof Create</a></li>
+                            <li class="active"><a asp-controller="Bug" asp-action="NewBugs"><i class="fa fa-circle-o"></i> New Bug List</a></li>
+                            <li class="active"><a asp-controller="Bug" asp-action="ResolvedBugs"><i class="fa fa-circle-o"></i> Old Bug List</a></li>
+                        </ul>
+
+                    </li>
+                    <li class="active treeview menu-open">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>Search Profiles</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a asp-controller="Bug" asp-action="SearchProfileConfig"><i class="fa fa-circle-o"></i> Search Profile Config</a></li>
+                            <li><a asp-controller="Developer" asp-action="Search"><i class="fa fa-circle-o"></i> Search</a></li>
+                        </ul>
+
+                    </li>
+                    <!--Itaration starts here-->
+                    @*<script type="text/javascript">
+                            $(document).ready(function() {
+                                var rid = '@roleid';
+                                var usid = '@userId';
+                                var propertyGetUrl = "@UrlConfig.Action("GetFormPermissionMenuRole", "UserPermission")?role_id=" + rid + "&&user_id=" + usid;
+
+                                $.ajax({
+                                    type: "GET",
+                                    url: propertyGetUrl,
+                                    dataType: "json",
+                                    contentType: "application/json",
+                                    success: function (data) {
+                                        var formDivString = '';
+                                        $.each(data,function (i, ob) { // implemnt to create element
+
+
+                                            if (ob.hasChild == false) { // if dont have child
+                                                formDivString += '<li class="">';
+                                                formDivString += ' <a href="/' + ob.control_controller + '/' + ob.control_action + '">';
+                                                formDivString += ' <i class="' + ob.icon + '"></i> <span>' + ob.control_name + '</span>';
+                                                formDivString += ' </a>';
+                                            } else if (ob.hasChild == true) {
+                                                formDivString += '<li class="treeview">';
+                                                formDivString += '<a href="#">';
+                                                formDivString += ' <i class="' + ob.icon + '"></i> <span>' + ob.control_name + '</span>';
+                                                formDivString += '<span class="pull-right-container">';
+                                                formDivString += ' <i class="fa fa-angle-left pull-right"></i>';
+                                                formDivString += ' </span>';
+                                                formDivString += ' </a>';
+                                                formDivString += ' <ul class="treeview-menu">';
+                                                // child div
+                                                var child = ob.childControls;
+                                                $.each(child, function (ind, obc) {
+                                                    var url = '/' + obc.control_controller + '/' + obc.control_action;
+                                                    formDivString += ' <li  style="overflow: hidden;"><a href="' + url + '"><i class="fa fa-circle-o"></i> ' + obc.control_name + '</a></li>';
+                                                });
+                                                formDivString += ' </ul>';
+                                                //child div ends
+                                            }
+                                            formDivString += '</li>';
+                                        });
+                                        console.log('output',formDivString);
+                                        $(".sidebar-menu").append(formDivString);
+
+                                    }
+                                });
+                            })
+                        </script>*@
+
+                </ul>
+            </section>
+            <!-- /.sidebar -->
+        </aside>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <!-- Main content -->
+            <section class="content">
+                @RenderBody()
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 2.0
+            </div>
+            <strong>Copyright &copy; 2019-2020 <a href="http://jmjcode.net/">JMJ CODE</a>.</strong> All rights
+            reserved.
+        </footer>
+
+
+        <div class="control-sidebar-bg"></div>
+    </div>
+    <script>var code = "123";</script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-tagify/jQuery.tagify.min.js"></script>
+
+
+    <script src="~/lib/jquery-validate/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script src="~/lib/fastclick/lib/fastclick.js"></script>
+    @*<script src="~/lib/AdminLTE/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>*@
+    <script src="~/lib/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    @*<script src="~/lib/chart.js/Chart.js"></script>*@
+    <script src="~/lib/AdminLTE/dist/js/adminlte.min.js"></script>
+    <script src="~/lib/AdminLTE/dist/js/demo.js"></script>
+
+    <script src="~/lib/loading/loading.js"></script>
+    <script src="~/lib/moment.js/moment.min.js"></script>
+    <script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.jqueryui.min.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="  https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src=" https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+    <script src=" https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+    <script src=" https://cdn.datatables.net/buttons/1.6.2/js/buttons.colVis.min.js"></script>
+
+    @RenderSection("scripts", false)
+
+
+</body>
+</html>
+

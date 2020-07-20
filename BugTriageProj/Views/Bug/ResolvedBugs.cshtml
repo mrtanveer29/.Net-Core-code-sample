@@ -1,0 +1,93 @@
+﻿@model BugViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Old Bug List</h2>
+
+<div class="d-flex">
+    <div class="item">
+        <a asp-action="Create">Create New</a>
+    </div>
+    <div class="form-inline">
+        <div class="form-group">
+            <select id="bugSource" class="form-control">
+                <option value="Mozila">Mozila</option>
+                <option value="Eclipse">Eclipse</option>
+                <option value="NetBeans">NetBeans</option>
+                <option value="All">All</option>
+            </select>
+            <input type="text" name="name" value="" placeholder="Security Code" id="securityCode" class="form-control" />
+            <button id="deleteBug" class="btn btn-danger">Delete Bugs</button>
+            <button id="indexRecords" class="btn btn-success">Index Records</button>
+        </div>
+    </div>
+   
+</div>
+
+<br />
+
+<table id="bugs">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Products)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Component)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SeverityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Priority)
+            </th>
+
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+@section scripts{
+    <script src="~/js/BugList.js"></script>
+    <script>
+        $(() => {
+            getBugList("Old");
+            $("#deleteBug").on('click', function (e) {
+                var securityCode = $("#securityCode").val();
+                if (securityCode !== code) {
+                    alert("Security Code Not Matched");
+                    Loading(false);
+                    return;
+                }
+                var bugSource = $("#bugSource").val();
+                deleteBugs({ "bugSource": bugSource })
+            });
+            $("#indexRecords").on('click', function (e) {
+                var securityCode = $("#securityCode").val();
+                if (securityCode !== code) {
+                    alert("Security Code Not Matched");
+                    Loading(false);
+                    return;
+                }
+                var bugSource = $("#bugSource").val();
+                indexRecords()
+            });
+
+        });
+      
+    </script>
+}

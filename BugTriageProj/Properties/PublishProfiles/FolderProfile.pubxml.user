@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>F:\BugTriage Publish</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="NpgSql">
+      <Value>Server=127.0.0.1%3bPort=5432%3bDatabase=BugTriage%3bUser Id=postgres%3bPassword=123456%3b</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+  <ItemGroup>
+    <File Include="wwwroot/js/BugList.js">
+      <publishTime>04/20/2020 16:19:47</publishTime>
+    </File>
+    <File Include="wwwroot/js/DeveloperLIst.js">
+      <publishTime>04/20/2020 11:35:25</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery/jquery.js">
+      <publishTime>04/19/2020 15:53:32</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery/jquery.min.js">
+      <publishTime>04/19/2020 15:53:32</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery/jquery.min.map">
+      <publishTime>04/19/2020 15:53:32</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery/jquery.slim.js">
+      <publishTime>04/19/2020 15:53:32</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery/jquery.slim.min.js">
+      <publishTime>04/19/2020 15:53:32</publishTime>
+    </File>
+    <File Include="wwwroot/js/jquery/jquery.slim.min.map">
+      <publishTime>04/19/2020 15:53:32</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

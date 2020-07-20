@@ -1,0 +1,71 @@
+﻿@model DeveloperViewModel;
+
+<style>
+    .d-flex {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between
+    }
+</style>
+
+<div class="">
+    <h1>Senior Experienced Developer List</h1>
+    <div class="d-flex">
+        <div class="item">
+            <a asp-action="Create">Create New</a>
+        </div>
+        <div class="form-inline">
+            <div class="form-group">
+                <input type="text" name="name" value="" placeholder="Security Code" id="securityCode" class="form-control" />
+                <button id="btnDeleteDevelopers" class="btn btn-danger">Delete Developers</button>
+            </div>
+        </div>
+
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-12">
+            <table id="developers" class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DeveloperName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DeveloperTypeName)
+                        </th>
+
+                        <th>
+                            Actions
+                        </th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/js/DeveloperLIst.js"></script>
+    <script>
+        $(() => {
+            GenerateDeveloperList(1);
+            $("#btnDeleteDevelopers").on('click', function (e) {
+                var securityCode = $("#securityCode").val();
+                if (securityCode !== code) {
+                    alert("Security Code Not Matched");
+                    Loading(false);
+                    return;
+                }
+                deleteDeveopers({ "type": 1 });
+            })
+        });
+
+    </script>
+}

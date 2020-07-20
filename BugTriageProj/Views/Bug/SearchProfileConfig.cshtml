@@ -1,0 +1,83 @@
+﻿@model BugTriage.ViewModels.ProfileMatchConfigViewModel
+
+@{
+    ViewData["Title"] = "Search Profile Config";
+}
+
+<h2>Search Profile Config</h2>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SearchProfileConfig">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @if (ViewData["success"] != null)
+            {
+                <div class="alert alert-success">@ViewData["success"]</div>
+            }
+
+            @if (ViewData["error"] != null)
+            {
+                <div class="alert alert-error">@ViewData["error"]</div>
+            }
+            <input type="hidden" asp-for="profile_match_config_id" value="0" />
+            <div class="form-group">
+                <label asp-for="severity" class="control-label"></label>
+                <select asp-for="severity" class="form-control">
+                    <option value="">Select A Priority</option>
+                    <option value="high">High</option>
+                    <option value="normal">Medium</option>
+                    <option value="low">Low</option>
+                </select>
+                <span asp-validation-for="severity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="no_of_sed" class="control-label"></label>
+                <input asp-for="no_of_sed" class="form-control" />
+                <span asp-validation-for="no_of_sed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="no_of_ned" class="control-label"></label>
+                <input asp-for="no_of_ned" class="form-control" />
+                <span asp-validation-for="no_of_ned" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="no_of_fd" class="control-label"></label>
+                <input asp-for="no_of_fd" class="form-control" />
+                <span asp-validation-for="no_of_fd" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+@section scripts{
+    <script>
+        $("#severity").on('change', function() {
+            var severity = $(this).val();
+            $.ajax({
+                type: 'GET',
+                url: "/Bug/GetSearchProfileConfig",
+                data: { 'severity': severity},
+                success: function (data) {
+                    if (data.is_succeed && data.output!=null) {
+                        var output = data.output;
+                        $("#no_of_sed").val(output.no_of_sed);
+                        $("#no_of_ned").val(output.no_of_ned);
+                        $("#no_of_fd").val(output.no_of_fd);
+                        $("#profile_match_config_id").val(output.profile_match_config_id);
+                    } else {
+                        alert(data.msg);
+                        $("#no_of_sed").val(0);
+                        $("#no_of_ned").val(0);
+                        $("#no_of_fd").val(0);
+                        $("#profile_match_config_id").val(0);
+                    }
+                }
+            });
+        })
+    </script>
+}
+

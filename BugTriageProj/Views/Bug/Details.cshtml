@@ -1,0 +1,100 @@
+﻿@model BugTriage.ViewModels.BugViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+
+    <div class="row">
+        <h4 class="well">Bug Details</h4>
+        <hr />
+        <div class="col-md-6">
+            <div class="form-group">
+                <label asp-for="ManualId" class="control-label"></label>
+                <input asp-for="ManualId" class="form-control" disabled />
+                <span asp-validation-for="ManualId" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <label asp-for="Products" class="control-label"></label>
+                <input asp-for="Products" class="form-control" disabled />
+                <span asp-validation-for="Products" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Component" class="control-label"></label>
+                <input asp-for="Component" class="form-control" disabled />
+                <span asp-validation-for="Component" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hardware" class="control-label"></label>
+                <input asp-for="Hardware" class="form-control" disabled />
+                <span asp-validation-for="Hardware" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KeyWords" class="control-label"></label>
+                <textarea asp-for="KeyWords" class="form-control" disabled></textarea>
+                <span asp-validation-for="KeyWords" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Assignee" class="control-label"></label>
+                <input asp-for="Assignee" class="form-control" disabled />
+                <span asp-validation-for="Assignee" class="text-danger"></span>
+            </div>
+
+
+        </div>
+        <div class="col-md-6">
+
+            <div class="form-group">
+                <label asp-for="Saverity" class="control-label"></label>
+                <select asp-for="Saverity" class="form-control" disabled>
+                    <option value="1">Blocker</option>
+                    <option value="2">Critical</option>
+                    <option value="3">Major</option>
+                    <option value="4">Normal</option>
+                    <option value="5">Minor</option>
+                    <option value="6">Trivial</option>
+                    <option value="7">Enhancement</option>
+                    <option value="8">S1</option>
+                    <option value="9">S2</option>
+                    <option value="10">S3</option>
+                    <option value="11">S4</option>
+                </select>
+                <span asp-validation-for="Saverity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Priority" class="control-label"></label>
+                <select asp-for="Priority" class="form-control" disabled>
+                    <option value="1">P1</option>
+                    <option value="2">P2</option>
+                    <option value="3">P3</option>
+                    <option value="4">P4</option>
+
+                </select>
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" disabled />
+                <span asp-validation-for="Component" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Summery" class="control-label"></label>
+                <textarea asp-for="Summery" class="form-control" disabled></textarea>
+                <span asp-validation-for="Summery" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <textarea asp-for="Description" class="form-control" disabled></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Changed" class="control-label"></label>
+                <input asp-for="Changed" class="form-control" disabled></input>
+                <span asp-validation-for="Changed" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div>
+      
+    </div>

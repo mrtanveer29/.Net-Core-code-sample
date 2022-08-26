@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <PackageReference Include="Lucene.Net" Version="4.8.0-beta00008" />
-    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.1.22" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="2.1.1" />
   </ItemGroup>
 
